@@ -1,14 +1,16 @@
 \section{Face clustering}
 \label{sec:face_clustering}
 
-TBA
-
 \subsection{First system}
 
-TBA
+Face tracking-by-detection is applied within each shot using a detector based on histogram of oriented gradients~\cite{Dalal2005} and the correlation tracker proposed by \emph{Danelljan et al.}~\cite{Danelljan2014}. Each face track is then described by its average \emph{FaceNet} embedding and compared with all the others using Euclidean distance~\cite{Schroff2015}. Finally, average-link hierarchical agglomerative clustering is applied. Source code for this module is available in \emph{pyannote-video}\footnote{\url{http://pyannote.github.io}}.
 
 \subsection{Second system}
 
-TBA
+A fast version of deformable part-based model (DPM)~\cite{felzenszwalb2010dpm,mathias2014face,dubout2013deformable} is first applied. Then tracking is performed using the CRF-based multi-target tracking framework~\cite{heili2014tracking}, which relies on the unsupervised learning of time sensitive association costs for different features.
+%
+The detector is only applied 4 times per second and an explicit false alarm classifier at the track level is learned\cite{Le_ICPR_2016}.
+%
+Each face track is then described using a combination of keypoint matching distances and total variability modeling (TVM)~\cite{wallace2011inter,wallace2012total,Khoury:ICMR:2013}.
 
 \endinput

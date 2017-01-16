@@ -52,6 +52,9 @@
 \input{Notations}
 %\newcommand{\mypartitle}[2][2]{\vspace*{-#1 ex}~\\{\noindent {\bf #2}}}
 
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{url}
 \usepackage{paralist}
 
 \begin{document}
@@ -84,9 +87,11 @@
 
 \input{Introduction}
 
-\input{RelatedWorks}
+%\input{RelatedWorks}
 
-\input{SystemOverview}
+%\input{SystemOverview}
+
+\input{OCR-NER}
 
 \input{FaceClustering}
 
@@ -99,7 +104,7 @@
 \input{FutureWork}
 
 \bibliographystyle{abbrv}
-{\scriptsize
+{%\scriptsize
 \bibliography{PersonDiscovery2016}
 }
 \end{document}

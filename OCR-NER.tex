@@ -1,0 +1,21 @@
+\section{Video OCR and NER}
+\label{sec:ocr_ner}
+
+To detect OCR segments in videos and exploit them for retrieval, we first relied on the approaches described in
+\cite{chen-pr04,odobez-prl05} for text recognition in videos, and on \cite{daddaoua:ICDAR:05,vincia:tmm:05}
+for text recognition and indexing.
+%
+In brief, given an input video, two main steps are applied: first the video is preprocessed with a motion filtering to reduce noise, and individual frames are processed to localize and binarize the text regions for text recognition.
+%
+As compared to printed documents, OCR in TV news videos encounters several challenges: low resolution of text regions, sequence of different texts continuously displayed, or small amount of text to be recognized etc.
+%
+To tackle these, multiple image segmentations of the same text region are decoded, and then all results are compared and aggregated over time to produce several hypotheses. 
+%Due to the long running time, only the lower half of the videos are processed.
+%
+The best hypothesis is used to extract people names for identification. To recognize names from texts, we use the MITIE open library~\footnote{https://github.com/mit-nlp/MITIE}, which provides state-of-the-art NER tool. 
+%
+%However, detecting names for identification can be more challenging due to several factors: (a) OCR text are often not sentences but short phrases, (b) names come from various languages, and (c) there are names of editorial staff who do not appear within the video, thus are not useful for identification such as cameramen or editors.
+%
+To improve the raw MITIE results, a heuristics preprocessing step identifies names of editorial staff based on their roles (cameraman, editor, or writer) because they do not appear within the video, thus are not useful for identification.
+
+\endinput
