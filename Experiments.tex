@@ -24,9 +24,11 @@ Average precision $\text{AP}(q)$ is then computed classically based on the list 
 \subsection{Evaluation}
 
 \begin{compactitem}
-	\item Sub. (2) used our face naming without talking score with our OCR-NER.
-	\item Sub. (3) used our face naming with talking score. 
-	\item Sub. (4) used the combination of talking face naming in sub. (3) with speaker naming.
+  \item Sub. (2) used LIUM speaker diarization with our OCR-NER.
+  \item Sub. (2) used OpenFace for face naming without talking score with our OCR-NER.
+	\item Sub. (3) used our face naming without talking score with our OCR-NER.
+	\item Sub. (4) used our face naming with talking score. 
+	\item Sub. (5) used the combination of talking face naming in sub. (3) with speaker naming.
 \end{compactitem}
 
 \begin{table}[tb]
@@ -34,10 +36,11 @@ Average precision $\text{AP}(q)$ is then computed classically based on the list 
 \begin{tabular}{c|c|c|c|}
 \cline{2-4}
                                 & MAP@1  & MAP@10 & MAP@100  \\ \hline
-
- \multicolumn{1}{|c|}{Sub. (2)} & 62.3   & 50.3   & 49.2 \\ \hline
- \multicolumn{1}{|c|}{Sub. (3)} & 69.3   & 57.0   & 55.8 \\ \hline
- \multicolumn{1}{|c|}{Sub. (4)} & 73.6   & 59.8   & 57.9 \\ \hline
+ \multicolumn{1}{|c|}{Sub. (1)} & 29.9   & 26.2   & 25.2 \\ \hline
+ \multicolumn{1}{|c|}{Sub. (2)} & 65.8   & 46.0   & 45.0 \\ \hline
+ \multicolumn{1}{|c|}{Sub. (3)} & 62.3   & 50.3   & 49.2 \\ \hline
+ \multicolumn{1}{|c|}{Sub. (4)} & 69.3   & 57.0   & 55.8 \\ \hline
+ \multicolumn{1}{|c|}{Sub. (5)} & 73.6   & 59.8   & 57.9 \\ \hline
 
 \end{tabular}
 \vspace*{-2mm}
