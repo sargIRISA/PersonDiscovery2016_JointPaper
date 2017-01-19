@@ -1,9 +1,9 @@
 \section{Video OCR and NER}
 \label{sec:ocr_ner}
 
-To detect OCR segments in videos and exploit them for retrieval, we first relied on the approaches described in
-\cite{chen-pr04,odobez-prl05} for text recognition in videos, and on \cite{daddaoua:ICDAR:05,vincia:tmm:05}
-for text recognition and indexing.
+Person identities can be retrieved either from speech transcripts or from overlaid person names commonly used to introduce the current speaker. Person identities from transcripts deteriorates when transcripts come from automatic speech recognition. Meanwhile, text can be reliably extracted using OCR techniques, and their association with people in the videos is easier than analysing whether or not pronounced names in ASR transcripts actually refer to people appearing in the video. Thus, in this work we use only names coming from OCR segments in videos.
+
+To detect OCR segments in videos and exploit them for retrieval, we first relied on the approaches described in \cite{chen-pr04,odobez-prl05} for text recognition in videos, and on \cite{daddaoua:ICDAR:05,vincia:tmm:05} for text recognition and indexing.
 %
 In brief, given an input video, two main steps are applied: first the video is preprocessed with a motion filtering to reduce noise, and individual frames are processed to localize and binarize the text regions for text recognition.
 %

@@ -3,25 +3,17 @@
 %
 \subsection{Datasets and Metric}
 
-The 2015 test corpus serves as development set for this year's task. It contains 106 hours of video, corresponding to 172 editions of evening broadcast news \emph{``Le 20 heures''} of the French public channel \emph{``France 2''}, from January 1st 2007 to June 30st 2007. This development set is associated with \emph{a posteriori} annotations based on last year participants' submissions.
+The test set is divided into three datasets: INA, DW and 3-24. The INA dataset contains a full week of broadcast for 2 TV channels for a total duration of 90 hours in French. The DW dataset~\cite{EUMSSI} is composed of video downloaded from Deutsche Welle website, in English and German for a total duration of 50 hours. The last dataset contains 13 hours of broadcast from 3/24 Catalan TV news channel. Each shot has been tagged with the names of people who appear and speak within that shot.
 
-The test set is divided into three datasets: INA, DW and 3-24. The INA dataset contains a full week of broadcast for 3 TV channels and 3 radio channels in French. Only a subset (made of 2 TV video channels for a total duration of 90 hours) needs to be processed. However, participants can process the rest of it if they think it might lead to improved results. Moreover, this dataset is associated with manual metadata provided by INA in the shape of CSV files. The DW dataset~\cite{EUMSSI} is composed of video downloaded from Deutsche Welle website, in English and German for a total duration of 50 hours. This dataset is also associated with metadata that can be used in contrastive runs. The last dataset contains 13 hours of broadcast from 3/24 Catalan TV news channel.
-
-As the test set comes completely free of any annotation, it will be annotated \emph{a posteriori} based on participants' submissions.
-In order to ease this annotation process, participants are asked to justify their assertion. To this end, each hypothesized name $n \in \hypNames$ has to be backed up by a carefully selected and unique shot prooving that the person actually holds this name $n$: we call this an evidence. In real-world conditions, this evidence would help a human annotator double-check the automatically-generated index, even for people they did not know beforehand.
-
-Two types of evidence are allowed: an \emph{image} evidence is a time in a video when a person is visible, while his/her name is written on screen; an \emph{audio} evidence is the time when the name of a person is pronounced, provided that this person is visible in a $[\text{time} - 5s, \text{time} + 5s ]$ neighborhood.
-For instance, in Figure~\ref{fig:evidence}, shot \#1 contains an \emph{image} evidence for Mr A (because his name and his face are visible simultaneously on screen) while shot \#3 contains an \emph{audio} evidence for Mrs B (because her name is pronounced less than 5 seconds before or after her face is visible on screen).
-
-Because of limited resources dedicated to collaborative annotation, the test set cannot be fully annotated. Therefore, the task is evaluated indirectly as an information retrieval task, using the folllowing principle.
-
+The task is evaluated indirectly as an information retrieval task, using the folllowing principle.
+%
 For each query $q \in \queries \subset \refNames$ (\texttt{first\-name\_lastname}), returned shots are first sorted by the edit distance between the hypothesized person name and the query $q$ and then by confidence scores.
 Average precision $\text{AP}(q)$ is then computed classically based on the list of relevant shots (according to the groundtruth) and the sorted list of shots. Finally, Mean Average Precision is computed as follows:
 \begin{align}
             \text{MAP} & = \frac{1}{|\queries|} \sum_{q \in \queries} \text{AP}(q) \nonumber
 \end{align}
 
-\subsection{Evaluation}
+\subsection{Results}
 
 \begin{compactitem}
   \item Sub. (2) used LIUM speaker diarization with our OCR-NER.
