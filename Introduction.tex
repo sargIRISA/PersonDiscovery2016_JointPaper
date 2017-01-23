@@ -17,8 +17,14 @@ Because the list of people is not provided in advance, their names have to be fo
 %
 This makes the task completely unsupervised (\emph{i.e.} using algorithms not relying on pre-existing labels or biometric models).
 
-What are the problems to solve here?
+In order to successfully tag the shots with the correct identities, one must find a way to assign a name correctly to a presence of the corresponding person, then that name must also be propagated to all the shots during which that person appears and speaks. For this purpose, there are 3 possible approaches:
+\begin{compactitem}
+\item{Clustering-based name assignment: Face/speech tracks are first aggregated into homogeneous clusters according to person identities. Then each clusters is tagged with the most probable person name.}
+\item{Verification-based name propagation: A person name is first assigned to the most probable face/speech track. The name is then propagated to all face/speech tracks which are verified to have the same identity.}
+\item{Graph-based name propagation: A graph is built with a face/speech track as a node and weight of edges is the similarity. Some nodes are initially tagged with the names. Names are then propagated along the edges within the graph.}
+\end{compactitem}
 
-What are the contributions?
+Although these approaches share some common components in face / speech representation, each has charateristic ...
 
+In this paper, the authors investigate all 3 approaches with their variations.
 \endinput
