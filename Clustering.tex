@@ -1,7 +1,7 @@
-\section{Clustering-based name assignment}
+\section{Clustering-based naming}
 \label{sec:clustering}
 
-To this end, a video must be segmented in an unsupervised way into homogeneous segments according to person identity, like  speaker diarization and face diarization, to be combined with the extracted names.
+In this approach, a video must be segmented in an unsupervised way into homogeneous clusters according to person identity using face clustering and speaker diarization. Then, the clusters are combined with the detected names to compute the optimal assignment.
 
 \subsection{Face clustering}
 
@@ -9,7 +9,11 @@ Given the video shots, face diarization process consists of (i) face detection, 
 
 \subsubsection{First system}
 
-Face tracking-by-detection is applied within each shot using a detector based on histogram of oriented gradients~\cite{Dalal2005} and the correlation tracker proposed by \emph{Danelljan et al.}~\cite{Danelljan2014}. Each face track is then described by its average \emph{FaceNet} embedding and compared with all the others using Euclidean distance~\cite{Schroff2015}. Finally, average-link hierarchical agglomerative clustering is applied. Source code for this module is available in \emph{pyannote-video}\footnote{\url{http://pyannote.github.io}}.
+Face tracking-by-detection is applied within each shot using a detector based on histogram of oriented gradients~\cite{Dalal2005} and the correlation tracker proposed by \emph{Danelljan et al.}~\cite{Danelljan2014}. 
+%
+Each face track is then described by its average \emph{FaceNet} embedding and compared with all the others using Euclidean distance~\cite{Schroff2015}. 
+%
+Finally, average-link hierarchical agglomerative clustering is applied. Source code for this module is available in \emph{pyannote-video}\footnote{\url{http://pyannote.github.io}}.
 
 \subsubsection{Second system}
 
@@ -21,9 +25,19 @@ Each face track is then described using a combination of keypoint matching dista
 
 \subsection{Speaker diarization}
 
-TBA
+The speaker diarization system (``who speak when?") is based on the LIUM Speaker Diarization system\cite{rouvier2013}, freely distributed\footnote{\url{www-lium.univ-lemans.fr/en/content/liumspkdiarization}}. 
+%This system has achieved the best or second best results in the speaker diarization task on REPERE French broadcast evaluation campaigns 2012 and 2013~\cite{galibert2013b}.
+%
+The diarization system is first composed of an acoustic Bayesian Information Criterion (BIC)-based segmentation followed by a BIC-based hierarchical clustering. Each cluster represents a speaker and is modeled with a full covariance Gaussian. A Viterbi decoding re-segments the signal using GMMs with 8 diagonal components learned by EM-ML, for each cluster. Segmentation, clustering and decoding are performed with 12 MFCC+E, computed with a 10ms frame rate. Music and jingle regions are removed using a Viterbi decoding with 8 GMMs (trained on french broadcast news data) for music, jingle, silence, and speech (with wide/narrow band variants for the last two, and clean or noised or musical background variants for wideband speech).
+
+In the above steps, features were used unnormalized in order to preserve information on the background environment, which may help differentiating between speakers. At this point however, each cluster contains the voice of only one speaker, but several clusters can be related to a same speaker. The background environment contribution must be removed from each GMM cluster, through feature gaussianization.
+%
+Finally, the system is completed with clustering method based on the i-vectors paradigm and Integer Linear Programming (ILP). 
+This clustering method is fully described in~\cite{rouvier12-2} and~\cite{dupuy2014}. 
+%The ILP clustering along with i-vectors speaker models gives better results than the usual hierarchical agglomerative clustering based on GMMs and cross-likelihood distances~\cite{Barras2006}.
 
 \subsection{Name assignment}
-Direct assignment + Hungarian algorithm
+
+Baseline from~\cite{poignant2012fusion}.
 
 \endinput
