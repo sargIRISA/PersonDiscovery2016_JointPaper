@@ -1,11 +1,19 @@
-\section{Name initialization and graph-based propagation}
+\section{Name initialization and graph-based propagation (MOTIF)}
 \label{sec:graph}
 
-In this sections, system = first initialization, then names are propagated based on a similarity graph (MOTIF)
+The MOTIF team (IRISA/Inria-Rennes and PUC Minas) considered a graph-based approach where each node represents a ``speaking face''. The graph is complete and undirected, and each edge between two nodes is associated to a weight quantifying the audio and/or visual similarity between their respective speaking faces. An initial tagging is done by associating to each face track the names found in the overlays when they co-occur. Then a name-propagation is performed according to the weights of the graphs using two different strategies.
 
-\subsection{Graph generation}
+\subsection{Graph generation details}
+\label{ssec:graph_gen}
+A node is created for every ``speaking face'', namely each face track which temporally overlaps a speech segment by at least 60\%. If several speech segments overlap it, the face track is associated the one with the maximal overlap.
 
-TBA
+Edges between nodes can be weighted according to their audio or visual similarities. 
+
+We compute the visual similarity $\sigma^V_{ij}$ as a cosine similarity between the OpenFace feature vectors $v_i$ and $v_j$ related to the face tracks of two nodes $N_i$ and $N_j$: $\sigma^V_{ij}=1/2+\frac{v_i\cdot v_j}{||v_i||*||v_j||}$, where $\cdot$ is the dot product and $||.||$ is the L2 norm.
+
+The similarity $\sigma^A_{ij}$ between the speech segments of two nodes  $N_i$ and $N_j$ are computed as follows. Each speech segment is modeled with a 16-Gaussian mixture model (GMM) over Mel-frequency cepstral features. An Euclidean-based approximation of the KL2 divergence, noted $\delta^A_{ij}$, is then computed between the two GMMs~\cite{Ben}, and turned into a
+similarity according to $\sigma^A_{ij}=\exp(\log{(\alpha)} \; \delta^A_{ij})$, where $\alpha = 0.25$.
+
 
 \subsection{Name propagation}
 
