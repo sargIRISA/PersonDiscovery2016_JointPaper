@@ -1,9 +1,11 @@
-\section{Clustering and name assignment}
+\section{Clustering-based name assignment}
 \label{sec:clustering}
 
-In this sections, system = first clustering, then names are assigned to clusters. (Baseline, Eumssi)
+To this end, a video must be segmented in an unsupervised way into homogeneous segments according to person identity, like  speaker diarization and face diarization, to be combined with the extracted names.
 
 \subsection{Face clustering}
+
+Given the video shots, face diarization process consists of (i) face detection, detecting faces appearing within each shot, (ii) face tracking, extending detections into continuous tracks within each shot, and (iii) face clustering, grouping all tracks with the same identity into clusters.
 
 \subsubsection{First system}
 

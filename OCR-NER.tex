@@ -15,7 +15,7 @@ As compared to printed documents, OCR in TV news videos encounters several chall
 To tackle these, multiple image segmentations of the same text region are decoded, and then all results are compared and aggregated over time to produce several hypotheses. 
 %Due to the long running time, only the lower half of the videos are processed.
 %
-The best hypothesis is used to extract people names for identification. To recognize names from texts, we use the MITIE open library~\footnote{https://github.com/mit-nlp/MITIE}, which provides state-of-the-art NER tool. 
+The best hypothesis is used to extract people names for identification. To recognize names from texts, we use the MITIE open library~\footnote{\url{https://github.com/mit-nlp/MITIE}}, which provides state-of-the-art NER tool. 
 %
 %However, detecting names for identification can be more challenging due to several factors: (a) OCR text are often not sentences but short phrases, (b) names come from various languages, and (c) there are names of editorial staff who do not appear within the video, thus are not useful for identification such as cameramen or editors.
 %
